@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-panoramic-imgstitcher"
+description = "Nodeds:Panoramic Image Stitcher"
+version = "1.0.0"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/RodrigoSKohl/ComfyUI-Panoramic-ImgStitcher"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-Panoramic-ImgStitcher"
+Icon = ""
