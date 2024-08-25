@@ -12,3 +12,5 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 
 
 print("\033[34mComfyUI Custom Nodes: \033[92mLoaded Image Stitching Node\033[0m")
+
+__all__ = ['NODE_CLASS_MAPPINGS', 'NODE_DISPLAY_NAME_MAPPINGS']

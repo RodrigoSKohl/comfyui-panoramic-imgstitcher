@@ -25,7 +25,7 @@ class ImageStitchingNode:
     def stitch_images(self, images, device):
         # Verifica se recebeu pelo menos duas imagens
         if len(images) < 2:
-            raise ValueError("São necessárias pelo menos duas imagens para o stitching.")
+            raise ValueError("At least two images are required for stitching.")
 
         # Verifica se o dispositivo especificado está disponível
         device = torch.device(device if torch.cuda.is_available() and "cuda" in device else "cpu")
@@ -42,7 +42,7 @@ class ImageStitchingNode:
 
         # Verifica se o stitching foi bem-sucedido
         if status != cv2.Stitcher_OK:
-            raise RuntimeError(f"Erro ao fazer o stitching: {status}")
+            raise RuntimeError(f"Error when stitching: {status}")
 
         # Converte a imagem resultante para um tensor que o ComfyUI pode usar
         pano_pil = Image.fromarray(cv2.cvtColor(pano, cv2.COLOR_BGR2RGB))
