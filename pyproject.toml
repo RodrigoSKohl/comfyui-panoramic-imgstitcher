@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-panoramic-imgstitcher"
 description = "Simple Node to make panoramic images"
-version = "1.0.0"
+version = "1.0.1"
 license = {file = "LICENSE"}
 
 [project.urls]
