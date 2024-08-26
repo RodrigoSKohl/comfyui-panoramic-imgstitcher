@@ -1,4 +1,4 @@
-from .nodes import ImageStitchingNode
+from .nodes.nodes import ImageStitchingNode
 
 
 NODE_CLASS_MAPPINGS = {
