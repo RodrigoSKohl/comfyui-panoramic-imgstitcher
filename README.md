@@ -17,7 +17,7 @@ This node is available on [ComfyUI Manager](github.com/ltdrdata/ComfyUI-Manager)
 ## PARAMETERS
 | Name   | Description                                           |
 |--------|-------------------------------------------------------|
-| ``device`` | Improved performance only if using it in flow, since OpenCV functions run only on the CPU)    |
+| ``device`` | Improved performance only if using it in flow, since OpenCV functions run only on the CPU    |
 | ``crop``   | Crops the smallest acceptable area with perspective warp pixels |
 | ``mode`` | Switches between panoramic mode (default) or scans mode, optimized for documents and images with details such as letters |
 | ``threshold`` | Decreases the precision to create stitch points, but can cause errors, see [FAQ](#faq)|
