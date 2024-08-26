@@ -7,7 +7,7 @@
 ## Simple Node to make panoramic images using [OpenCV](https://github.com/opencv) stitch function
 
 
-This node is available on [ComfyUI Manager](github.com/ltdrdata/ComfyUI-Manager)
+This node is available on [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
 
 #
 
