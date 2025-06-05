@@ -11,30 +11,40 @@ This node is available on [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-
 
 #
 
-![1](https://github.com/user-attachments/assets/012d3e35-f12c-4ea8-b1df-3561e7fd9eca)
-![2](https://github.com/user-attachments/assets/9216004f-bc8e-46a3-8fef-414eed4b0da0)
+
 
 ## PARAMETERS
-| Name   | Description                                           |
-|--------|-------------------------------------------------------|
-| ``device`` | Improved performance only if using it in flow, since OpenCV functions run only on the CPU    |
-| ``crop``   | Crops the smallest acceptable area with perspective warp pixels |
-| ``mode`` | Switches between panoramic mode (default) or scans mode, optimized for documents and images with details such as letters |
-| ``threshold`` | Decreases the precision to create stitch points, but can cause errors, see [FAQ](#faq)|
+| Name           | Description                                                                                                        | Type                     | Min   | Max   | Default       | Step |
+| -------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------ | ----- | ----- | ------------- | ---- |
+| `crop`         | Enable or disable cropping of the smallest acceptable area with perspective warp pixels                            | `"enable" \| "disable"`  | —     | —     | `"enable"`    | —    |
+| `mode`         | Switch between stitching modes: `"panoramic"` (default) or `"scans"` (optimized for documents/text)                | `"panoramic" \| "scans"` | —     | —     | `"panoramic"` | —    |
+| `conf_thresh`    | Decreases the confidence threshold for creating stitch points. Lowering this value makes the algorithm less strict, potentially causing stitching errors or misalignments. See [FAQ](#faq) | Float (0.0–1.0)          | 0.0   | 1.0   | 1.0           | 0.01 |
+| `work_megapix` | Resolution (in megapixels) used for registration step. Higher values = better quality, slower process              | Float (0.001–100.0)      | 0.001 | 100.0 | 0.6           | 0.01 |
+| `seam_megapix` | Resolution (in megapixels) used for seam estimation. Lower values speed up the process with some quality loss      | Float (0.001–100.0)      | 0.001 | 100.0 | 0.1           | 0.01 |
+[Default values encountered here](https://github.com/opencv/opencv/blob/master/samples/cpp/stitching_detailed.cpp)
 
 ## FAQ
 
 - ``Error 1``
   
-Occurs when the stitcher cannot find the stitch points between the images (the stitcher function algorithm needs it to return an average of equality points to join the image. Increasing the number of images and decreasing the spacing between them avoids this problem
+This error occurs when the stitcher cannot find enough stitch points between the images. The stitching algorithm requires a sufficient number of matching points to correctly join the images.
+
+How to avoid or fix this error:
+
+Increase the number of images and reduce the spacing between them to improve overlap and matching points;
+Increase the work_megapix and seam_megapix parameters, especially work_megapix, to process images at higher resolution. This is particularly useful for very large (high-resolution) images where default downscaling might remove important details needed for matching;
+
 
 - ``Error 3``
 
-It happens when the threshold is too low. Always use the default value 1.0 and go down to refine. In the tests carried out there was little gain in the reduction of warp perspective by lowering this parameter.
+Controls the confidence threshold for creating stitch points. Lowering this value makes the algorithm less strict but can cause stitching errors, especially if images are not well captured or not in the correct sequential order (batch).
+
+Important: Always use the default value 1.0 unless your images are high quality, well aligned, and captured carefully;
+Images are provided in the correct sequence, ensuring smooth visual continuity.
+Lowering the threshold offers no real advantage except to avoid false positives when there are very similar or duplicated images in the batch. Use caution, as lowering it improperly can degrade stitching quality.
 
 ## Next features
 
-- Improvements in code redundancy between some functions.
-- Impement the mask as alpha directly in the image.
+- Automatically calculate work_megapix and seam_megapix.
 
 *Feel free to open PR or issues.*
