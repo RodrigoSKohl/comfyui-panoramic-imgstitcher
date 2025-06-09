@@ -21,6 +21,7 @@ This node is available on [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-
 | `conf_thresh`    | Decreases the confidence threshold for creating stitch points. Lowering this value makes the algorithm less strict, potentially causing stitching errors or misalignments. See [FAQ](#faq) | Float (0.0–1.0)          | 0.0   | 1.0   | 1.0           | 0.01 |
 | `work_megapix` | Resolution (in megapixels) used for registration step. Higher values = better quality, slower process              | Float (0.001–100.0)      | 0.001 | 100.0 | 0.6           | 0.01 |
 | `seam_megapix` | Resolution (in megapixels) used for seam estimation. Lower values speed up the process with some quality loss      | Float (0.001–100.0)      | 0.001 | 100.0 | 0.1           | 0.01 |
+
 [Default values encountered here](https://github.com/opencv/opencv/blob/master/samples/cpp/stitching_detailed.cpp)
 
 ## FAQ
@@ -41,7 +42,7 @@ Controls the confidence threshold for creating stitch points. Lowering this valu
 
 Important: Always use the default value 1.0 unless your images are high quality, well aligned, and captured carefully;
 Images are provided in the correct sequence, ensuring smooth visual continuity.
-Lowering the threshold offers no real advantage except to avoid false positives when there are very similar or duplicated images in the batch. Use caution, as lowering it improperly can degrade stitching quality.
+Lowering the threshold offers no real advantage except to avoid false positives images. 
 
 ## Next features
 
